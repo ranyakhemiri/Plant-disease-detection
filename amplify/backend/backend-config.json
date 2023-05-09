@@ -1,0 +1,81 @@
+{
+  "api": {
+    "postimgtos3": {
+      "dependsOn": [
+        {
+          "attributes": [
+            "Name",
+            "Arn"
+          ],
+          "category": "function",
+          "resourceName": "plantdiseasedetectio9be1cd61"
+        }
+      ],
+      "providerPlugin": "awscloudformation",
+      "service": "API Gateway"
+    }
+  },
+  "auth": {
+    "PlantDiseaseDetection": {
+      "customAuth": false,
+      "dependsOn": [],
+      "frontendAuthConfig": {
+        "mfaConfiguration": "OFF",
+        "mfaTypes": [
+          "SMS"
+        ],
+        "passwordProtectionSettings": {
+          "passwordPolicyCharacters": [
+            "REQUIRES_LOWERCASE",
+            "REQUIRES_NUMBERS",
+            "REQUIRES_UPPERCASE"
+          ],
+          "passwordPolicyMinLength": 10
+        },
+        "signupAttributes": [
+          "EMAIL"
+        ],
+        "socialProviders": [],
+        "usernameAttributes": [
+          "EMAIL"
+        ],
+        "verificationMechanisms": [
+          "EMAIL"
+        ]
+      },
+      "providerPlugin": "awscloudformation",
+      "service": "Cognito"
+    }
+  },
+  "function": {
+    "plantdiseasedetectio9be1cd61": {
+      "build": true,
+      "providerPlugin": "awscloudformation",
+      "service": "Lambda"
+    }
+  },
+  "hosting": {
+    "S3AndCloudFront": {
+      "providerPlugin": "awscloudformation",
+      "service": "S3AndCloudFront"
+    }
+  },
+  "parameters": {
+    "AMPLIFY_function_plantdiseasedetectio9be1cd61_deploymentBucketName": {
+      "usedBy": [
+        {
+          "category": "function",
+          "resourceName": "plantdiseasedetectio9be1cd61"
+        }
+      ]
+    },
+    "AMPLIFY_function_plantdiseasedetectio9be1cd61_s3Key": {
+      "usedBy": [
+        {
+          "category": "function",
+          "resourceName": "plantdiseasedetectio9be1cd61"
+        }
+      ]
+    }
+  }
+}
