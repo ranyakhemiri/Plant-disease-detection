@@ -10,7 +10,7 @@ function App() {
         <p>
           Upload your plant picture here.
         </p>
-        
+        <button type="upload">Upload</button>
       </header>
     </div>
   );
