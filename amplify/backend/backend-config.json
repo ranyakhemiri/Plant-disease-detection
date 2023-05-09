@@ -60,22 +60,11 @@
       "service": "S3AndCloudFront"
     }
   },
-  "parameters": {
-    "AMPLIFY_function_plantdiseasedetectio9be1cd61_deploymentBucketName": {
-      "usedBy": [
-        {
-          "category": "function",
-          "resourceName": "plantdiseasedetectio9be1cd61"
-        }
-      ]
-    },
-    "AMPLIFY_function_plantdiseasedetectio9be1cd61_s3Key": {
-      "usedBy": [
-        {
-          "category": "function",
-          "resourceName": "plantdiseasedetectio9be1cd61"
-        }
-      ]
+  "storage": {
+    "s3plantdiseasedetectionupload380e72c3": {
+      "dependsOn": [],
+      "providerPlugin": "awscloudformation",
+      "service": "S3"
     }
   }
 }

@@ -26,6 +26,9 @@
       },
       "auth": {
         "PlantDiseaseDetection": {}
+      },
+      "storage": {
+        "s3plantdiseasedetectionupload380e72c3": {}
       }
     }
   }

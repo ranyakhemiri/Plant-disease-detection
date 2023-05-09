@@ -37,5 +37,11 @@ export type AmplifyDependentResourcesAttributes = {
       "S3BucketSecureURL": "string",
       "WebsiteURL": "string"
     }
+  },
+  "storage": {
+    "s3plantdiseasedetectionupload380e72c3": {
+      "BucketName": "string",
+      "Region": "string"
+    }
   }
 }
