@@ -30,7 +30,7 @@
             "REQUIRES_NUMBERS",
             "REQUIRES_UPPERCASE"
           ],
-          "passwordPolicyMinLength": 10
+          "passwordPolicyMinLength": 8
         },
         "signupAttributes": [
           "EMAIL"
