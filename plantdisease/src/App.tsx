@@ -6,7 +6,7 @@ import "@aws-amplify/ui-react/styles.css";
 function App() {
   return (
     <FileUploader
-      accessLevel='private'
+      accessLevel='public'
       acceptedFileTypes={
         ['image/*']
       }

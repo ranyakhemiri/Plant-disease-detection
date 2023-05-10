@@ -1,0 +1,12 @@
+{
+  "resourceName": "s3plantdiseasedetectionupload380e72c3",
+  "bucketName": "plantdiseasedetection-upload-380e72c3",
+  "policyUUID": "13f5e820",
+  "storageAccess": "auth",
+  "guestAccess": [],
+  "authAccess": [
+    "CREATE_AND_UPDATE",
+    "READ",
+    "DELETE"
+  ]
+}
