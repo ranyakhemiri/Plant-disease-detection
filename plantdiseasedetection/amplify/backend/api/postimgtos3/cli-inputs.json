@@ -1,0 +1,12 @@
+{
+  "version": 1,
+  "paths": {
+    "/images/{plantid}": {
+      "name": "/images/{plantid}",
+      "lambdaFunction": "plantdiseasedetectio9be1cd61",
+      "permissions": {
+        "setting": "open"
+      }
+    }
+  }
+}

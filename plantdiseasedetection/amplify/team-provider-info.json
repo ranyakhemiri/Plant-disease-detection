@@ -1,0 +1,29 @@
+{
+  "staging": {
+    "awscloudformation": {
+      "AuthRoleName": "amplify-plantdiseasedetectio-staging-91420-authRole",
+      "UnauthRoleArn": "arn:aws:iam::334842727856:role/amplify-plantdiseasedetectio-staging-91420-unauthRole",
+      "AuthRoleArn": "arn:aws:iam::334842727856:role/amplify-plantdiseasedetectio-staging-91420-authRole",
+      "Region": "us-east-1",
+      "DeploymentBucketName": "amplify-plantdiseasedetectio-staging-91420-deployment",
+      "UnauthRoleName": "amplify-plantdiseasedetectio-staging-91420-unauthRole",
+      "StackName": "amplify-plantdiseasedetectio-staging-91420",
+      "StackId": "arn:aws:cloudformation:us-east-1:334842727856:stack/amplify-plantdiseasedetectio-staging-91420/e20e1370-ee49-11ed-8954-0aef03c1a807",
+      "AmplifyAppId": "d3d2l464t3po2k"
+    },
+    "categories": {
+      "auth": {
+        "PlantDiseaseDetection": {}
+      },
+      "function": {
+        "plantdiseasedetectio9be1cd61": {
+          "deploymentBucketName": "amplify-plantdiseasedetectio-staging-91420-deployment",
+          "s3Key": "amplify-builds/plantdiseasedetectio9be1cd61-734246514937724f2b64-build.zip"
+        }
+      },
+      "storage": {
+        "s3plantdiseasedetectionupload380e72c3": {}
+      }
+    }
+  }
+}
