@@ -4,15 +4,19 @@ import { FileUploader, withAuthenticator} from '@aws-amplify/ui-react';
 import "@aws-amplify/ui-react/styles.css";
 
 function App() {
-  return (
-    <FileUploader
-      accessLevel='private'
-      acceptedFileTypes={
-        ['image/*']
-      }
-      variation='drop'
-    />
+  const goToPredictionPage = () => {
+    
+  };
 
+  return (
+    <div>
+      <FileUploader
+        accessLevel='public'
+        acceptedFileTypes={['image/*']}
+        variation='drop'
+      />
+      <button onClick={goToPredictionPage}>Go to Prediction Page</button>
+    </div>
   );
 }
 
