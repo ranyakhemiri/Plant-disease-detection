@@ -120,10 +120,10 @@ const DrawBoundingBoxes: React.FC<DrawBoundingBoxesProps> = ({ uploadedFileName 
     <div className='bbox-container'>
       <Heading level={4}>Draw bounding boxes around the {uploadedFileName} image:</Heading>
       <div className='bbox-crop-container'>
-        {imageUrl && <img className='image' src={imageUrl} alt='Uploaded Image' />}
+        {imageUrl && <img className='bbox-image' src={imageUrl} alt='Uploaded Image' />}
         <canvas
           ref={canvasRef}
-          className='canvas'
+          className='bbox-canvas'
           width={imageWidth}
           height={imageHeight}
           onMouseDown={handleMouseDown}

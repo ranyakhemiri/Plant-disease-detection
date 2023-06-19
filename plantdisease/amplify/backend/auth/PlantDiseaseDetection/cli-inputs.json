@@ -62,11 +62,6 @@
     },
     "breakCircularDependency": true,
     "dependsOn": [],
-    "hostedUI": false,
-    "triggers": {},
-    "parentStack": {
-      "Ref": "AWS::StackId"
-    },
-    "permissions": []
+    "hostedUI": false
   }
 }

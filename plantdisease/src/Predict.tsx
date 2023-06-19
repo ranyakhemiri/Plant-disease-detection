@@ -69,41 +69,45 @@ function Predict({ uploadedFileName }: PredictProps) {
     }
   };
 
-  const drawBoundingBoxes = (bbox: number[]) => {
-    const canvas = canvasRef.current;
-    if (!canvas) return;
+const drawBoundingBoxes = (bbox: number[]) => {
+  const canvas = canvasRef.current;
+  if (!canvas) return;
 
-    const context = canvas.getContext("2d");
-    if (!context) return;
+  const context = canvas.getContext("2d");
+  if (!context) return;
 
-    const img = new Image();
-    img.src = imageURL; // Set the image source before onload
+  const img = new Image();
+  img.onload = () => {
+    const { naturalWidth, naturalHeight } = img;
+    console.log(naturalWidth, naturalHeight);
 
-    img.onload = () => {
-      const { naturalWidth, naturalHeight } = img;
-      console.log(naturalWidth, naturalHeight);
+    // Resize canvas to match image size
+    canvas.width = naturalWidth;
+    canvas.height = naturalHeight;
 
-      // Resize canvas to match image size
-      canvas.width = naturalWidth;
-      canvas.height = naturalHeight;
+    context.clearRect(0, 0, canvas.width, canvas.height);
+    context.drawImage(img, 0, 0);
 
-      context.clearRect(0, 0, canvas.width, canvas.height);
-      context.drawImage(img, 0, 0);
-      context.lineWidth = 2;
+    const canvasRatio = canvas.width / canvas.getBoundingClientRect().width;
+
+    // Draw each bounding box
+    for (let i = 0; i < bbox.length; i += 4) {
+      const [yMin, xMin, yMax, xMax] = bbox.slice(i, i + 4);
+      const scaledXMin = xMin * canvasRatio;
+      const scaledYMin = yMin * canvasRatio;
+      const scaledXMax = xMax * canvasRatio;
+      const scaledYMax = yMax * canvasRatio;
+
+      context.beginPath();
+      context.rect(scaledXMin, scaledYMin, scaledXMax - scaledXMin, scaledYMax - scaledYMin);
       context.strokeStyle = "red";
+      context.lineWidth = 2;
       context.stroke();
-
-      // Draw each bounding box
-      for (let i = 0; i < bbox.length; i += 4) {
-        const [yMin, xMin, yMax, xMax] = bbox.slice(i, i + 4);
-        context.beginPath();
-        context.rect(xMin, yMin, xMax - xMin, yMax
-
- - yMin);
-        context.stroke();
-      }
-    };
+    }
   };
+
+  img.src = imageURL; // Set the image source after defining onload callback
+};
 
   const handleYesClick = () => {
     console.log("Yes button clicked");
@@ -161,4 +165,3 @@ function Predict({ uploadedFileName }: PredictProps) {
 }
 
 export default Predict;
-
