@@ -69,45 +69,59 @@ function Predict({ uploadedFileName }: PredictProps) {
     }
   };
 
-const drawBoundingBoxes = (bbox: number[]) => {
-  const canvas = canvasRef.current;
-  if (!canvas) return;
+  const drawBoundingBoxes = (bbox: number[]) => {
+    const canvas = canvasRef.current;
+    if (!canvas) return;
 
-  const context = canvas.getContext("2d");
-  if (!context) return;
+    const context = canvas.getContext("2d");
+    if (!context) return;
 
-  const img = new Image();
-  img.onload = () => {
-    const { naturalWidth, naturalHeight } = img;
-    console.log(naturalWidth, naturalHeight);
+    const img = new Image();
 
-    // Resize canvas to match image size
-    canvas.width = naturalWidth;
-    canvas.height = naturalHeight;
+    img.onload = () => {
+      const { naturalWidth, naturalHeight } = img;
+      console.log(naturalWidth, naturalHeight);
 
-    context.clearRect(0, 0, canvas.width, canvas.height);
-    context.drawImage(img, 0, 0);
+      // Resize canvas to match image size
+      canvas.width = naturalWidth;
+      canvas.height = naturalHeight;
 
-    const canvasRatio = canvas.width / canvas.getBoundingClientRect().width;
+      context.clearRect(0, 0, canvas.width, canvas.height);
+      context.drawImage(img, 0, 0);
 
-    // Draw each bounding box
-    for (let i = 0; i < bbox.length; i += 4) {
-      const [yMin, xMin, yMax, xMax] = bbox.slice(i, i + 4);
-      const scaledXMin = xMin * canvasRatio;
-      const scaledYMin = yMin * canvasRatio;
-      const scaledXMax = xMax * canvasRatio;
-      const scaledYMax = yMax * canvasRatio;
+      const canvasRatio = canvas.width / canvas.getBoundingClientRect().width;
 
-      context.beginPath();
-      context.rect(scaledXMin, scaledYMin, scaledXMax - scaledXMin, scaledYMax - scaledYMin);
-      context.strokeStyle = "red";
-      context.lineWidth = 2;
-      context.stroke();
-    }
+      // Draw each bounding box
+      for (let i = 0; i < bbox.length; i += 4) {
+        const [yMin, xMin, yMax, xMax] = bbox.slice(i, i + 4);
+        const scaledXMin = xMin * canvasRatio;
+        const scaledYMin = yMin * canvasRatio;
+        const scaledXMax = xMax * canvasRatio;
+        const scaledYMax = yMax * canvasRatio;
+
+        context.beginPath();
+        context.rect(scaledXMin, scaledYMin, scaledXMax - scaledXMin, scaledYMax - scaledYMin);
+        context.strokeStyle = "red";
+        context.lineWidth = 2;
+        context.stroke();
+      }
+    };
+
+    img.src = imageURL; // Set the image source
+
+    // Fetch the image URL and trigger the onload event
+    const fetchImage = async () => {
+      try {
+        const response = await fetch(imageURL);
+        const blob = await response.blob();
+        img.src = URL.createObjectURL(blob);
+      } catch (error) {
+        console.log("Error fetching image:", error);
+      }
+    };
+
+    fetchImage();
   };
-
-  img.src = imageURL; // Set the image source after defining onload callback
-};
 
   const handleYesClick = () => {
     console.log("Yes button clicked");
@@ -143,7 +157,7 @@ const drawBoundingBoxes = (bbox: number[]) => {
       {imageURL && (
         <div className="image-container">
           <canvas ref={canvasRef} className="canvas" />
-          <img src={imageURL} alt="Uploaded Image" className="image" />
+          <img src={imageURL} alt="Uploaded Image" className="image" onLoad={() => drawBoundingBoxes(boundingBoxes)} />
         </div>
       )}
       <div className="button-container">
