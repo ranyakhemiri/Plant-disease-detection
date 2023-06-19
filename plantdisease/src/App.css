@@ -36,3 +36,104 @@
     transform: rotate(360deg);
   }
 }
+
+.container {
+  display: grid;
+  align-items: center;
+  justify-content: center;
+  height: 100vh;
+  gap: 10px;
+}
+
+.button-container {
+  padding : 20px;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+}
+
+.class-button-wrapper {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+}
+
+@media (min-width: 768px) {
+  .class-button-wrapper {
+    flex-wrap: nowrap;
+  }
+}
+
+.class-button {
+  margin: 4px;
+}
+
+.selected .class-button {
+  background-color: lightblue;
+}
+
+
+.checkmark-icon-green {
+  font-size: 64px;
+  color: green; 
+}
+
+.checkmark-icon-red {
+  font-size: 64px;
+  color: red; 
+}
+
+.modifications-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  height: 100vh;
+  text-align: center;
+}
+
+.icon {
+  padding: 20px;
+}
+
+.link {
+  padding: 20px;
+  justify-content: center;
+  text-align: center;
+}
+.image-container {
+  position: relative;
+  width: 100%;
+  max-width: 500px;
+  height: auto;
+}
+
+.canvas {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+}
+
+.image {
+  display: block;
+  width: 100%;
+  height: auto;
+}
+
+
+.bbox-container {
+  height: auto;
+}
+
+.bbox-crop-container {
+  position: relative;
+  width: 100%;
+  height: auto;
+  overflow: hidden;
+  align-items: center;
+}
+
+
+.bbox-button-container {
+  margin-top: 20px;
+}
