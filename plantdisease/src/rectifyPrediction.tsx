@@ -101,7 +101,7 @@ const ChooseCorrectClass: React.FC<ChooseCorrectClassProps> = ({ uploadedFileNam
   }
 
   return (
-    <div className="container">
+    <div className="rectify-container">
       <div className="button-container">
         <Grid gap={2}>
           {Object.keys(classes).map((className) => (

@@ -102,12 +102,23 @@
   text-align: center;
 }
 
+.rectify-container {
+  display: flex;
+  align-items: center;
+}
+
 .image-container {
+  flex: 1;
   position: relative;
-  width: 100%;
   max-width: 500px;
   height: auto;
 }
+
+.button-container {
+  flex: 1;
+  margin-left: 20px; /* Adjust the margin as needed */
+}
+
 
 .canvas {
   position: absolute;
