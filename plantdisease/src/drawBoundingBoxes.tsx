@@ -2,7 +2,7 @@ import React, { useState, useEffect, useRef } from 'react';
 import { Button } from '@aws-amplify/ui-react';
 import RectifySuccessful from './rectifyPredictionSuccess';
 import { Heading } from '@aws-amplify/ui-react';
-import { Storage } from 'aws-amplify';
+import { Storage, API } from 'aws-amplify';
 
 interface DrawBoundingBoxesProps {
   uploadedFileName: string;
@@ -52,8 +52,19 @@ const DrawBoundingBoxes: React.FC<DrawBoundingBoxesProps> = ({ uploadedFileName 
     }
   };
 
-  const handleDoneClick = () => {
-    setRedirectToSuccess(true);
+  const handleDoneClick = async () => {
+    try {
+      const response = await API.post('uploadbboxtos3', '/your-api-path', {
+        body: {
+          // Include any request data here
+        }
+      });
+      // Handle the API response here
+      console.log(response);
+      setRedirectToSuccess(true);
+    } catch (error) {
+      console.log('Error calling API:', error);
+    }
   };
 
   const handleMouseDown = (event: React.MouseEvent<HTMLCanvasElement>) => {
@@ -92,7 +103,7 @@ const DrawBoundingBoxes: React.FC<DrawBoundingBoxesProps> = ({ uploadedFileName 
       }
     }
   };
-  
+
   const drawRectangle = () => {
     const canvas = canvasRef.current;
     if (canvas) {
