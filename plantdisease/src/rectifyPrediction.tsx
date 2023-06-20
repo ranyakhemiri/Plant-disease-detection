@@ -2,7 +2,6 @@ import React, { useEffect, useState } from 'react';
 import DrawBoundingBoxes from './drawBoundingBoxes';
 import { Storage } from 'aws-amplify';
 import { Grid, Button } from '@aws-amplify/ui-react';
-import './App.css';
 import RectifySuccessful from './rectifyPredictionSuccess';
 import RectifyFail from './rectifyPredictionFail';
 
@@ -122,7 +121,11 @@ const ChooseCorrectClass: React.FC<ChooseCorrectClassProps> = ({ uploadedFileNam
           ))}
         </Grid>
       </div>
-      {showBoundingBoxButton && (
+      
+      {imageUrl && (
+        <div className="image-container">
+          <img src={imageUrl} alt="Image" className="image" />
+          {showBoundingBoxButton && (
         <div className="button-group">
           <Button variation="primary" onClick={handleDrawBoundingBoxesClick} className="bounding-box-button">
             Draw Bounding Boxes
@@ -132,9 +135,6 @@ const ChooseCorrectClass: React.FC<ChooseCorrectClassProps> = ({ uploadedFileNam
           </Button>
         </div>
       )}
-      {imageUrl && (
-        <div className="image-container">
-          <img src={imageUrl} alt="Image" className="image" />
         </div>
       )}
     </div>

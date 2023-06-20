@@ -116,9 +116,14 @@
 
 .button-container {
   flex: 1;
-  margin-left: 20px; /* Adjust the margin as needed */
+  margin-left: 10px; /* Adjust the margin as needed */
 }
 
+.button-group {
+  display: flex;
+  justify-content: space-between;
+  margin: 10px; 
+}
 
 .canvas {
   position: absolute;

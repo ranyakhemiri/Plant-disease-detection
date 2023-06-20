@@ -13,6 +13,20 @@
       ],
       "providerPlugin": "awscloudformation",
       "service": "API Gateway"
+    },
+    "uploadbboxtos3": {
+      "dependsOn": [
+        {
+          "attributes": [
+            "Name",
+            "Arn"
+          ],
+          "category": "function",
+          "resourceName": "uploadbboxtojson"
+        }
+      ],
+      "providerPlugin": "awscloudformation",
+      "service": "API Gateway"
     }
   },
   "auth": {
@@ -49,6 +63,11 @@
   },
   "function": {
     "plantdiseasedetectio9be1cd61": {
+      "build": true,
+      "providerPlugin": "awscloudformation",
+      "service": "Lambda"
+    },
+    "uploadbboxtojson": {
       "build": true,
       "providerPlugin": "awscloudformation",
       "service": "Lambda"
