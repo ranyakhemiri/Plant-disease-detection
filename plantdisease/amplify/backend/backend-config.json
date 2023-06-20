@@ -1,19 +1,5 @@
 {
   "api": {
-    "postimgtos3": {
-      "dependsOn": [
-        {
-          "attributes": [
-            "Name",
-            "Arn"
-          ],
-          "category": "function",
-          "resourceName": "plantdiseasedetectio9be1cd61"
-        }
-      ],
-      "providerPlugin": "awscloudformation",
-      "service": "API Gateway"
-    },
     "uploadbboxtos3": {
       "dependsOn": [
         {
@@ -22,7 +8,7 @@
             "Arn"
           ],
           "category": "function",
-          "resourceName": "uploadbboxtojson"
+          "resourceName": "plantdiseasedetectio9be1cd61"
         }
       ],
       "providerPlugin": "awscloudformation",
@@ -63,11 +49,6 @@
   },
   "function": {
     "plantdiseasedetectio9be1cd61": {
-      "build": true,
-      "providerPlugin": "awscloudformation",
-      "service": "Lambda"
-    },
-    "uploadbboxtojson": {
       "build": true,
       "providerPlugin": "awscloudformation",
       "service": "Lambda"
