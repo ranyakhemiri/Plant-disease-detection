@@ -8,7 +8,7 @@
             "Arn"
           ],
           "category": "function",
-          "resourceName": "invokeSGMEndpoint"
+          "resourceName": "invokeEndpoint"
         }
       ],
       "providerPlugin": "awscloudformation",
@@ -62,7 +62,7 @@
     }
   },
   "function": {
-    "invokeSGMEndpoint": {
+    "invokeEndpoint": {
       "build": true,
       "dependsOn": [],
       "providerPlugin": "awscloudformation",
@@ -81,6 +81,22 @@
     }
   },
   "parameters": {
+    "AMPLIFY_function_invokeEndpoint_deploymentBucketName": {
+      "usedBy": [
+        {
+          "category": "function",
+          "resourceName": "invokeEndpoint"
+        }
+      ]
+    },
+    "AMPLIFY_function_invokeEndpoint_s3Key": {
+      "usedBy": [
+        {
+          "category": "function",
+          "resourceName": "invokeEndpoint"
+        }
+      ]
+    },
     "AMPLIFY_function_plantdiseasedetectio9be1cd61_deploymentBucketName": {
       "usedBy": [
         {

@@ -3,7 +3,7 @@
   "paths": {
     "/": {
       "name": "/",
-      "lambdaFunction": "invokeSGMEndpoint",
+      "lambdaFunction": "invokeEndpoint",
       "permissions": {
         "setting": "open"
       }

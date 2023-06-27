@@ -20,7 +20,11 @@
           "deploymentBucketName": "amplify-plantdiseasedetectio-staging-91420-deployment",
           "s3Key": "amplify-builds/plantdiseasedetectio9be1cd61-6f6a476445627839396b-build.zip"
         },
-        "invokeSGMEndpoint": {}
+        "invokeSGMEndpoint": {},
+        "invokeEndpoint": {
+          "deploymentBucketName": "amplify-plantdiseasedetectio-staging-91420-deployment",
+          "s3Key": "amplify-builds/invokeEndpoint-7a6c6a6d5248426a5875-build.zip"
+        }
       },
       "storage": {
         "s3plantdiseasedetectionupload380e72c3": {}

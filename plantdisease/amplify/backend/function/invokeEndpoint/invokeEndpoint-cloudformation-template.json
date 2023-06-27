@@ -1,6 +1,6 @@
 {
   "AWSTemplateFormatVersion": "2010-09-09",
-  "Description": "{\"createdOn\":\"Windows\",\"createdBy\":\"Amplify\",\"createdWith\":\"12.1.1\",\"stackType\":\"function-Lambda\",\"metadata\":{}}",
+  "Description": "{\"createdOn\":\"Windows\",\"createdBy\":\"Amplify\",\"createdWith\":\"11.1.1\",\"stackType\":\"function-Lambda\",\"metadata\":{}}",
   "Parameters": {
     "CloudWatchRule": {
       "Type": "String",
@@ -47,12 +47,12 @@
         "FunctionName": {
           "Fn::If": [
             "ShouldNotCreateEnvResources",
-            "invokeSGMEndpoint",
+            "invokeEndpoint",
             {
               "Fn::Join": [
                 "",
                 [
-                  "invokeSGMEndpoint",
+                  "invokeEndpoint",
                   "-",
                   {
                     "Ref": "env"
@@ -78,7 +78,7 @@
             "Arn"
           ]
         },
-        "Runtime": "python3.11",
+        "Runtime": "nodejs16.x",
         "Layers": [],
         "Timeout": 25
       }
@@ -89,12 +89,12 @@
         "RoleName": {
           "Fn::If": [
             "ShouldNotCreateEnvResources",
-            "plantdiseasedetectioLambdaRoleea34e4e0",
+            "plantdiseasedetectioLambdaRole45ed9721",
             {
               "Fn::Join": [
                 "",
                 [
-                  "plantdiseasedetectioLambdaRoleea34e4e0",
+                  "plantdiseasedetectioLambdaRole45ed9721",
                   "-",
                   {
                     "Ref": "env"
