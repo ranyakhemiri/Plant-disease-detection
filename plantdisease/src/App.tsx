@@ -15,12 +15,13 @@ function App() {
 
   const handlePredictClick = async () => {
     try {
-      const imageBytes = await Storage.get(uploadedFileName);
-      console.log(imageBytes);
+      console.log('starting api call')
+      // const imageBytes = await Storage.get(uploadedFileName);
+      // console.log(imageBytes);
       // Make the API call and pass the image data
       const apiResponse = await API.post("invokeEndpoint", "/", {
         body: {
-          image: imageBytes
+          image: 'hello'
         }
       });
       
