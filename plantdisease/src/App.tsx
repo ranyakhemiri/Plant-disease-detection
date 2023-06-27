@@ -4,7 +4,7 @@ import { FileUploader, withAuthenticator } from "@aws-amplify/ui-react";
 import { Button } from "@aws-amplify/ui-react";
 import "@aws-amplify/ui-react/styles.css";
 import Predict from "./Predict";
-import { Storage } from "aws-amplify";
+import { Storage, API } from "aws-amplify";
 
 function App() {
   const [showPrediction, setShowPrediction] = useState(false);
@@ -13,11 +13,24 @@ function App() {
   const [isLeaf, setIsLeaf] = useState(false);
   const [error, setError] = useState(false); // state for tracking error
 
-  const handlePredictClick = () => {
-    setShowPrediction(true);
+  const handlePredictClick = async () => {
+    try {
+      const imageBytes = await Storage.get(uploadedFileName);
+      console.log(imageBytes);
+      // Make the API call and pass the image data
+      const apiResponse = await API.post("invokeEndpoint", "/", {
+        body: {
+          image: imageBytes
+        }
+      });
+      
+      console.log(apiResponse); // Log the API response for debugging or further processing
+  
+    } catch (error) {
+      console.log("Error calling API:", error);
+    }
+    setShowPrediction(true); // Set showPrediction state to true after successful API call
   };
-
-  // Handle successful file upload
 
   const handleUploadSuccess = async (event: { key: string }) => {
     setUploadedFileName(event.key);
@@ -37,6 +50,21 @@ function App() {
       // Handle the case where the file is not a leaf
       // There will be no inference 
       if (!isLeaf) {
+        const fileKeyToDelete = `${event.key}-prediction.json`;
+        await Storage.remove(fileKeyToDelete)
+          .then(() => {
+            console.log(`Successfully deleted file: ${fileKeyToDelete}`);
+          })
+          .catch((error) => {
+            console.log("Error deleting file:", error);
+          });
+          await Storage.remove(event.key)
+          .then(() => {
+            console.log(`Successfully deleted image: ${event.key}`);
+          })
+          .catch((error) => {
+            console.log("Error deleting image:", error);
+          });
         setError(true);
         setShowPrediction(false);
         setUploadSuccessful(false);
@@ -55,6 +83,7 @@ function App() {
       {!showPrediction ? (
         <div>
           <FileUploader
+            maxFileCount={1}
             accessLevel="public"
             acceptedFileTypes={["image/*"]}
             variation="drop"

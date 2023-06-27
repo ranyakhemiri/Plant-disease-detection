@@ -4,6 +4,7 @@ import { Button } from "@aws-amplify/ui-react";
 import ChooseCorrectClass from "./rectifyPrediction";
 import { Heading } from '@aws-amplify/ui-react';
 import RectifySuccessful from './rectifyPredictionSuccess';
+import DrawBoundingBoxes from './drawBoundingBoxes';
 
 interface PredictProps {
   uploadedFileName: string;
@@ -13,6 +14,8 @@ function Predict({ uploadedFileName }: PredictProps) {
   const [prediction, setPrediction] = useState("");
   const [imageURL, setImageURL] = useState("");
   const [showRectifyPrediction, setShowRectifyPrediction] = useState(false);
+  const [showDrawSkipButtons, setShowDrawSkipButtons] = useState(false);
+  const [showDrawBounding, setShowDrawBounding] = useState(false);
   const [showRectifySuccessful, setShowRectifySuccessful] = useState(false);
   const [boundingBoxes, setBoundingBoxes] = useState<number[]>([]);
   const canvasRef: RefObject<HTMLCanvasElement> = useRef(null);
@@ -109,28 +112,38 @@ function Predict({ uploadedFileName }: PredictProps) {
 
     img.src = imageURL; // Set the image source
 
-    // Fetch the image URL and trigger the onload event
-    const fetchImage = async () => {
-      try {
-        const response = await fetch(imageURL);
-        const blob = await response.blob();
-        img.src = URL.createObjectURL(blob);
-      } catch (error) {
-        console.log("Error fetching image:", error);
-      }
-    };
+    // // Fetch the image URL and trigger the onload event
+    // const fetchImage = async () => {
+    //   try {
+    //     const response = await fetch(imageURL);
+    //     const blob = await response.blob();
+    //     img.src = URL.createObjectURL(blob);
+    //   } catch (error) {
+    //     console.log("Error fetching image:", error);
+    //   }
+    // };
 
-    fetchImage();
+    // fetchImage();
   };
 
   const handleYesClick = () => {
     console.log("Yes button clicked");
-    setShowRectifySuccessful(true);
+    setShowDrawSkipButtons(true);
   };
 
   const handleNoClick = () => {
     console.log("No button clicked");
     setShowRectifyPrediction(true);
+  };
+
+  const handleDrawBoundingBoxesClick = () => {
+    console.log("Draw Bounding Boxes button clicked");
+    setShowDrawBounding(true);
+  };
+
+  const handleSkipClick = () => {
+    console.log("Skip button clicked");
+    setShowRectifySuccessful(true);
   };
 
   const handleButtonClick = (buttonId: string) => {
@@ -146,6 +159,15 @@ function Predict({ uploadedFileName }: PredictProps) {
     );
   }
 
+
+  if (showDrawBounding) {
+    return (
+      <div>
+        <DrawBoundingBoxes uploadedFileName={uploadedFileName} />
+      </div>
+    );
+  }
+
   if (showRectifySuccessful) {
     return <RectifySuccessful uploadedFileName={uploadedFileName} />;
   }
@@ -157,7 +179,12 @@ function Predict({ uploadedFileName }: PredictProps) {
       {imageURL && (
         <div className="image-container">
           <canvas ref={canvasRef} className="canvas" />
-          <img src={imageURL} alt="Uploaded Image" className="image" onLoad={() => drawBoundingBoxes(boundingBoxes)} />
+          <img
+            src={imageURL}
+            alt="Uploaded Image"
+            className="image"
+            onLoad={() => drawBoundingBoxes(boundingBoxes)}
+          />
         </div>
       )}
       <div className="button-container">
@@ -174,6 +201,16 @@ function Predict({ uploadedFileName }: PredictProps) {
           No
         </Button>
       </div>
+      {showDrawSkipButtons && (
+        <div className="button-group">
+          <Button variation="primary" onClick={handleDrawBoundingBoxesClick} className="bounding-box-button">
+            Draw Bounding Boxes
+          </Button>
+          <Button variation="destructive" onClick={handleSkipClick} className="skip-button">
+            Skip
+          </Button>
+        </div>
+        )}
     </div>
   );
 }

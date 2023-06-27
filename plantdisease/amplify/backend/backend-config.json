@@ -1,5 +1,19 @@
 {
   "api": {
+    "invokeEndpoint": {
+      "dependsOn": [
+        {
+          "attributes": [
+            "Name",
+            "Arn"
+          ],
+          "category": "function",
+          "resourceName": "invokeSGMEndpoint"
+        }
+      ],
+      "providerPlugin": "awscloudformation",
+      "service": "API Gateway"
+    },
     "uploadbboxtos3": {
       "dependsOn": [
         {
@@ -48,6 +62,12 @@
     }
   },
   "function": {
+    "invokeSGMEndpoint": {
+      "build": true,
+      "dependsOn": [],
+      "providerPlugin": "awscloudformation",
+      "service": "Lambda"
+    },
     "plantdiseasedetectio9be1cd61": {
       "build": true,
       "providerPlugin": "awscloudformation",

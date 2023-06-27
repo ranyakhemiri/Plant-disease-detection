@@ -1,6 +1,6 @@
 export type AmplifyDependentResourcesAttributes = {
   "api": {
-    "postimgtos3": {
+    "invokeEndpoint": {
       "ApiId": "string",
       "ApiName": "string",
       "RootUrl": "string"
@@ -23,6 +23,13 @@ export type AmplifyDependentResourcesAttributes = {
     }
   },
   "function": {
+    "invokeEndpoint": {
+      "Arn": "string",
+      "LambdaExecutionRole": "string",
+      "LambdaExecutionRoleArn": "string",
+      "Name": "string",
+      "Region": "string"
+    },
     "plantdiseasedetectio9be1cd61": {
       "Arn": "string",
       "LambdaExecutionRole": "string",

@@ -96,6 +96,10 @@
   padding: 20px;
 }
 
+.error-message{
+  color:red;
+}
+
 .link {
   padding: 20px;
   justify-content: center;

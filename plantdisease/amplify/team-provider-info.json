@@ -18,11 +18,15 @@
       "function": {
         "plantdiseasedetectio9be1cd61": {
           "deploymentBucketName": "amplify-plantdiseasedetectio-staging-91420-deployment",
-          "s3Key": "amplify-builds/plantdiseasedetectio9be1cd61-734246514937724f2b64-build.zip"
-        }
+          "s3Key": "amplify-builds/plantdiseasedetectio9be1cd61-6f6a476445627839396b-build.zip"
+        },
+        "invokeSGMEndpoint": {}
       },
       "storage": {
         "s3plantdiseasedetectionupload380e72c3": {}
+      },
+      "api": {
+        "uploadbboxtos3": {}
       },
       "hosting": {
         "S3AndCloudFront": {}

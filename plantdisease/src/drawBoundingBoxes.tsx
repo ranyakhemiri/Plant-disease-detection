@@ -1,8 +1,10 @@
 import React, { useState, useEffect, useRef } from 'react';
 import { Button } from '@aws-amplify/ui-react';
 import RectifySuccessful from './rectifyPredictionSuccess';
+import RectifyFailed from './rectifyPredictionFail';
 import { Heading } from '@aws-amplify/ui-react';
 import { Storage, API } from 'aws-amplify';
+
 
 interface DrawBoundingBoxesProps {
   uploadedFileName: string;
@@ -17,6 +19,7 @@ interface Coordinates {
 
 const DrawBoundingBoxes: React.FC<DrawBoundingBoxesProps> = ({ uploadedFileName }) => {
   const [redirectToSuccess, setRedirectToSuccess] = useState(false);
+  const [redirectToFail, setRedirectToFail] = useState(false);
   const [imageUrl, setImageUrl] = useState<string>('');
   const [drawing, setDrawing] = useState(false);
   const [startPoint, setStartPoint] = useState<Coordinates>({ xmin: 0, xmax: 0, ymin: 0, ymax: 0 });
@@ -54,14 +57,23 @@ const DrawBoundingBoxes: React.FC<DrawBoundingBoxesProps> = ({ uploadedFileName 
 
   const handleDoneClick = async () => {
     try {
-      const response = await API.post('uploadbboxtos3', '/your-api-path', {
+      const response = await API.post('uploadbboxtos3', '/items', {
         body: {
-          // Include any request data here
+          xmin: rectangleCoordinates.xmin,
+          ymin: rectangleCoordinates.ymin,
+          xmax: rectangleCoordinates.xmax,
+          ymax: rectangleCoordinates.ymax,
+          filename: uploadedFileName
         }
       });
-      // Handle the API response here
-      console.log(response);
-      setRedirectToSuccess(true);
+      console.log('Response:', response);
+      if (response === uploadedFileName) {
+        console.log('Success');
+        setRedirectToSuccess(true);
+      }
+      else {
+        setRedirectToFail(true);
+      }
     } catch (error) {
       console.log('Error calling API:', error);
     }
@@ -125,6 +137,10 @@ const DrawBoundingBoxes: React.FC<DrawBoundingBoxesProps> = ({ uploadedFileName 
 
   if (redirectToSuccess) {
     return <RectifySuccessful uploadedFileName={uploadedFileName} />;
+  }
+
+  if (redirectToFail) {
+    return <RectifyFailed uploadedFileName={uploadedFileName} />
   }
 
   return (

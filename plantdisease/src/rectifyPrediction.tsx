@@ -59,7 +59,6 @@ const ChooseCorrectClass: React.FC<ChooseCorrectClassProps> = ({ uploadedFileNam
 
       // Upload the updated JSON file to Amplify Storage
       await Storage.put(fileKey, JSON.stringify(data));
-
       setShowBoundingBoxButton(true); // Show the "Draw Bounding Boxes" button
     } catch (error) {
       console.log('Error saving modifications: ', error);
