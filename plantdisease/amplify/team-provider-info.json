@@ -1,15 +1,15 @@
 {
-  "staging": {
+  "dev": {
     "awscloudformation": {
-      "AuthRoleName": "amplify-plantdiseasedetectio-staging-91420-authRole",
-      "UnauthRoleArn": "arn:aws:iam::334842727856:role/amplify-plantdiseasedetectio-staging-91420-unauthRole",
-      "AuthRoleArn": "arn:aws:iam::334842727856:role/amplify-plantdiseasedetectio-staging-91420-authRole",
+      "AuthRoleName": "amplify-plantdiseasedetectio-dev-122439-authRole",
+      "UnauthRoleArn": "arn:aws:iam::334842727856:role/amplify-plantdiseasedetectio-dev-122439-unauthRole",
+      "AuthRoleArn": "arn:aws:iam::334842727856:role/amplify-plantdiseasedetectio-dev-122439-authRole",
       "Region": "us-east-1",
-      "DeploymentBucketName": "amplify-plantdiseasedetectio-staging-91420-deployment",
-      "UnauthRoleName": "amplify-plantdiseasedetectio-staging-91420-unauthRole",
-      "StackName": "amplify-plantdiseasedetectio-staging-91420",
-      "StackId": "arn:aws:cloudformation:us-east-1:334842727856:stack/amplify-plantdiseasedetectio-staging-91420/e20e1370-ee49-11ed-8954-0aef03c1a807",
-      "AmplifyAppId": "d3d2l464t3po2k"
+      "DeploymentBucketName": "amplify-plantdiseasedetectio-dev-122439-deployment",
+      "UnauthRoleName": "amplify-plantdiseasedetectio-dev-122439-unauthRole",
+      "StackName": "amplify-plantdiseasedetectio-dev-122439",
+      "StackId": "arn:aws:cloudformation:us-east-1:334842727856:stack/amplify-plantdiseasedetectio-dev-122439/d9300810-14d4-11ee-be47-125bfb7a4ae7",
+      "AmplifyAppId": "d3n9bwzts4ju01"
     },
     "categories": {
       "auth": {
@@ -17,23 +17,31 @@
       },
       "function": {
         "plantdiseasedetectio9be1cd61": {
-          "deploymentBucketName": "amplify-plantdiseasedetectio-staging-91420-deployment",
-          "s3Key": "amplify-builds/plantdiseasedetectio9be1cd61-6f6a476445627839396b-build.zip"
+          "deploymentBucketName": "amplify-plantdiseasedetectio-dev-122439-deployment",
+          "s3Key": "amplify-builds/plantdiseasedetectio9be1cd61-5a486e6950426258676c-build.zip"
         },
-        "invokeSGMEndpoint": {},
-        "invokeEndpoint": {
-          "deploymentBucketName": "amplify-plantdiseasedetectio-staging-91420-deployment",
-          "s3Key": "amplify-builds/invokeEndpoint-7a6c6a6d5248426a5875-build.zip"
+        "invokeSGMEndpoint": {
+          "deploymentBucketName": "amplify-plantdiseasedetectio-dev-122439-deployment",
+          "s3Key": "amplify-builds/invokeSGMEndpoint-3168337956626d473576-build.zip"
         }
       },
-      "storage": {
-        "s3plantdiseasedetectionupload380e72c3": {}
-      },
       "api": {
+        "invokeSGMEndpoint": {},
         "uploadbboxtos3": {}
       },
       "hosting": {
         "S3AndCloudFront": {}
+      },
+      "storage": {
+        "s3plantdiseasedetectionupload380e72c3": {}
+      }
+    }
+  },
+  "staging": {
+    "categories": {
+      "function": {
+        "invokeSGMEndpoint": {},
+        "plantdiseasedetectio9be1cd61": {}
       }
     }
   }

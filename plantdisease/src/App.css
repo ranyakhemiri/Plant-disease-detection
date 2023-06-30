@@ -41,9 +41,10 @@
   display: grid;
   align-items: center;
   justify-content: center;
-  height: 100vh;
+  height: 50vh;
   gap: 10px;
 }
+
 
 .button-container {
   padding : 20px;
@@ -125,8 +126,12 @@
 
 .button-group {
   display: flex;
-  justify-content: space-between;
+  justify-content: center;
   margin: 10px; 
+}
+
+.amplify-button.amplify-field-group__control{
+  margin: 10px;
 }
 
 .canvas {
@@ -176,3 +181,50 @@
   margin-top: 10px;
 }
 
+.upload-instructions {
+  padding: 20px;
+  max-width:70%;
+
+}
+
+.upload-instructions-text {
+  padding-top: 15%;
+}
+
+.instructions {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.example-pictures{
+  display: block;
+  padding: 20%;
+  padding-top: 5%;
+}
+
+.title {
+  padding: 20%;
+  display: inline;
+  align-items: center;
+}
+
+.logo{
+  display: flex;
+  padding-top: 14px;
+  padding-right: 16px;
+  height: 30px;
+  overflow: inherit;
+}
+
+.amplify-flex.amplify-tabs{
+  margin-bottom: 40px;
+}
+
+.amplify-heading.amplify-heading--4{
+  padding-bottom:  20px;
+}
+
+.logo:hover{
+  cursor: pointer;
+}

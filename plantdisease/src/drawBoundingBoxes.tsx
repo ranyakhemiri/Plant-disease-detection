@@ -57,12 +57,19 @@ const DrawBoundingBoxes: React.FC<DrawBoundingBoxesProps> = ({ uploadedFileName 
 
   const handleDoneClick = async () => {
     try {
+      // calculate normalized box coordinates 
+      const normalized_xmin = rectangleCoordinates.xmin / imageWidth;
+      const normalized_ymin = rectangleCoordinates.ymin / imageHeight;
+      const normalized_xmax = rectangleCoordinates.xmax / imageWidth;
+      const normalized_ymax = rectangleCoordinates.ymax / imageHeight;
+      const normalized_box = [normalized_ymin,normalized_xmin,normalized_ymax,normalized_xmax];
+      console.log('Normalized box: ', normalized_box)
       const response = await API.post('uploadbboxtos3', '/items', {
         body: {
-          xmin: rectangleCoordinates.xmin,
-          ymin: rectangleCoordinates.ymin,
-          xmax: rectangleCoordinates.xmax,
-          ymax: rectangleCoordinates.ymax,
+          ymin: normalized_xmin,
+          xmin: normalized_ymin,
+          ymax: normalized_xmax,
+          xmax: normalized_ymax,
           filename: uploadedFileName
         }
       });

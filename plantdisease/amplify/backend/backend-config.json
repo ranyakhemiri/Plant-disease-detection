@@ -1,6 +1,6 @@
 {
   "api": {
-    "invokeEndpoint": {
+    "invokeSGMEndpoint": {
       "dependsOn": [
         {
           "attributes": [
@@ -8,7 +8,7 @@
             "Arn"
           ],
           "category": "function",
-          "resourceName": "invokeEndpoint"
+          "resourceName": "invokeSGMEndpoint"
         }
       ],
       "providerPlugin": "awscloudformation",
@@ -62,7 +62,7 @@
     }
   },
   "function": {
-    "invokeEndpoint": {
+    "invokeSGMEndpoint": {
       "build": true,
       "dependsOn": [],
       "providerPlugin": "awscloudformation",
@@ -78,40 +78,6 @@
     "S3AndCloudFront": {
       "providerPlugin": "awscloudformation",
       "service": "S3AndCloudFront"
-    }
-  },
-  "parameters": {
-    "AMPLIFY_function_invokeEndpoint_deploymentBucketName": {
-      "usedBy": [
-        {
-          "category": "function",
-          "resourceName": "invokeEndpoint"
-        }
-      ]
-    },
-    "AMPLIFY_function_invokeEndpoint_s3Key": {
-      "usedBy": [
-        {
-          "category": "function",
-          "resourceName": "invokeEndpoint"
-        }
-      ]
-    },
-    "AMPLIFY_function_plantdiseasedetectio9be1cd61_deploymentBucketName": {
-      "usedBy": [
-        {
-          "category": "function",
-          "resourceName": "plantdiseasedetectio9be1cd61"
-        }
-      ]
-    },
-    "AMPLIFY_function_plantdiseasedetectio9be1cd61_s3Key": {
-      "usedBy": [
-        {
-          "category": "function",
-          "resourceName": "plantdiseasedetectio9be1cd61"
-        }
-      ]
     }
   },
   "storage": {

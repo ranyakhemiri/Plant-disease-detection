@@ -21,8 +21,31 @@ function Predict({ uploadedFileName }: PredictProps) {
   const canvasRef: RefObject<HTMLCanvasElement> = useRef(null);
 
   useEffect(() => {
-    fetchPrediction();
+    // Fetch image URL from storage
+    const imageKey = uploadedFileName;
+    Storage.get(imageKey)
+      .then((imageResponse) => {
+        const imageSignedURL = imageResponse;
+        setImageURL(imageSignedURL);
+
+        // Fetch disease prediction 
+        fetchPrediction();
+        // Fetch bounding boxes
+        fetchBoundingBoxes(uploadedFileName)
+          .then((boundingBoxes) => {
+            setBoundingBoxes(boundingBoxes);
+            // Call drawBoundingBoxes function after both imageURL and boundingBoxes are updated
+            drawBoundingBoxes(boundingBoxes);
+          })
+          .catch((error) => {
+            console.log("Error fetching bounding boxes:", error);
+          });
+      })
+      .catch((error) => {
+        console.log("Error fetching image URL:", error);
+      });
   }, []);
+
 
   async function fetchBoundingBoxes(uploadedFileName: string) {
     try {
@@ -33,9 +56,8 @@ function Predict({ uploadedFileName }: PredictProps) {
       const fileResponse = await fetch(signedURL);
       const fileContents = await fileResponse.json();
       const { bbox } = fileContents;
-      console.log(bbox);
-
-      return bbox || [];
+      
+      return bbox || []; // bbox : ymin,xmin,ymax,xmax 
     } catch (error) {
       console.log("Error fetching bounding boxes:", error);
       return [];
@@ -55,24 +77,24 @@ function Predict({ uploadedFileName }: PredictProps) {
 
       setPrediction(category_id || "");
 
-      // Fetch image URL from storage
-      const imageKey = uploadedFileName;
-      const imageResponse = await Storage.get(imageKey);
-      const imageSignedURL = imageResponse;
-      setImageURL(imageSignedURL);
+      // // Fetch image URL from storage
+      // const imageKey = uploadedFileName;
+      // const imageResponse = await Storage.get(imageKey);
+      // const imageSignedURL = imageResponse;
+      // setImageURL(imageSignedURL);
 
-      // Fetch bounding boxes
-      const boundingBoxes = await fetchBoundingBoxes(uploadedFileName);
-      setBoundingBoxes(boundingBoxes);
+      // // Fetch bounding boxes
+      // const boundingBoxes = await fetchBoundingBoxes(uploadedFileName);
+      // setBoundingBoxes(boundingBoxes);
 
-      // Draw bounding boxes on the image
-      drawBoundingBoxes(boundingBoxes);
+      // // Draw bounding boxes on the image
+      // drawBoundingBoxes(boundingBoxes);
     } catch (error) {
       console.log("Error fetching file content:", error);
     }
   };
 
-  const drawBoundingBoxes = (bbox: number[]) => {
+  const drawBoundingBoxes = (normalizedBoxes: number[]) => {
     const canvas = canvasRef.current;
     if (!canvas) return;
 
@@ -83,7 +105,6 @@ function Predict({ uploadedFileName }: PredictProps) {
 
     img.onload = () => {
       const { naturalWidth, naturalHeight } = img;
-      console.log(naturalWidth, naturalHeight);
 
       // Resize canvas to match image size
       canvas.width = naturalWidth;
@@ -91,16 +112,16 @@ function Predict({ uploadedFileName }: PredictProps) {
 
       context.clearRect(0, 0, canvas.width, canvas.height);
       context.drawImage(img, 0, 0);
-
-      const canvasRatio = canvas.width / canvas.getBoundingClientRect().width;
-
+      console.log("Drawing prediction bounding boxes on image");
+      console.log("Bounding boxes:", normalizedBoxes);
       // Draw each bounding box
-      for (let i = 0; i < bbox.length; i += 4) {
-        const [yMin, xMin, yMax, xMax] = bbox.slice(i, i + 4);
-        const scaledXMin = xMin * canvasRatio;
-        const scaledYMin = yMin * canvasRatio;
-        const scaledXMax = xMax * canvasRatio;
-        const scaledYMax = yMax * canvasRatio;
+      for (let i = 0; i < normalizedBoxes.length; i += 4) {
+        const [normalizedXMin, normalizedYMin, normalizedXMax, normalizedYMax] = normalizedBoxes.slice(i, i + 4);
+
+        const scaledXMin = normalizedXMin * canvas.width;
+        const scaledYMin = normalizedYMin * canvas.height;
+        const scaledXMax = normalizedXMax * canvas.width;
+        const scaledYMax = normalizedYMax * canvas.height;
 
         context.beginPath();
         context.rect(scaledXMin, scaledYMin, scaledXMax - scaledXMin, scaledYMax - scaledYMin);
@@ -111,19 +132,6 @@ function Predict({ uploadedFileName }: PredictProps) {
     };
 
     img.src = imageURL; // Set the image source
-
-    // // Fetch the image URL and trigger the onload event
-    // const fetchImage = async () => {
-    //   try {
-    //     const response = await fetch(imageURL);
-    //     const blob = await response.blob();
-    //     img.src = URL.createObjectURL(blob);
-    //   } catch (error) {
-    //     console.log("Error fetching image:", error);
-    //   }
-    // };
-
-    // fetchImage();
   };
 
   const handleYesClick = () => {
@@ -174,8 +182,10 @@ function Predict({ uploadedFileName }: PredictProps) {
 
   return (
     <div className="prediction-container">
-      <Heading level={2}>Prediction</Heading>
-      <h4>Disease category is: {prediction}</h4>
+      <Heading level={4}>Prediction</Heading>
+      {prediction !== "" && (
+      <h4>Disease category is: {prediction}</h4>)
+      }
       {imageURL && (
         <div className="image-container">
           <canvas ref={canvasRef} className="canvas" />
@@ -210,7 +220,7 @@ function Predict({ uploadedFileName }: PredictProps) {
             Skip
           </Button>
         </div>
-        )}
+      )}
     </div>
   );
 }
