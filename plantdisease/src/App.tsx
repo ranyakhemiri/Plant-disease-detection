@@ -64,7 +64,7 @@ function App() {
     setUploadSuccessful(true);
     const delay = (ms: number) => new Promise((resolve) => setTimeout(resolve, ms));
     // Wait for 10 seconds before executing the "try catch" block
-    await delay(300);      
+    await delay(1000);      
     try {
         const fileKey = `${event.key}-prediction.json`;
         console.log("Storage file created with name : ",fileKey);

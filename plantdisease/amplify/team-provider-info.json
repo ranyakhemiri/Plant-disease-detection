@@ -22,7 +22,7 @@
         },
         "invokeSGMEndpoint": {
           "deploymentBucketName": "amplify-plantdiseasedetectio-dev-122439-deployment",
-          "s3Key": "amplify-builds/invokeSGMEndpoint-3168337956626d473576-build.zip"
+          "s3Key": "amplify-builds/invokeSGMEndpoint-493949734757345a6855-build.zip"
         }
       },
       "api": {
