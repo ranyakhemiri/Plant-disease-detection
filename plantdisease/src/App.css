@@ -41,8 +41,9 @@
   display: grid;
   align-items: center;
   justify-content: center;
-  height: 50vh;
+  height: 35vh;
   gap: 10px;
+  padding: 20px;
 }
 
 
@@ -93,6 +94,36 @@
   text-align: center;
 }
 
+.amplify-heading.amplify-heading--4 {
+  text-align: center;
+  padding: 20px;
+}
+
+.amplify-heading.amplify-heading--3 {
+ text-align: center;
+ padding: 20px;
+}
+
+.amplify-heading.amplify-heading--5 {
+  text-align: center;
+  padding: 10px;
+ }
+
+ .amplify-heading.amplify-heading--6 {
+  text-align: center;
+  padding: 10px;
+ }
+.icon-down{
+  width: 100%;
+  text-align: center;
+}
+
+.icon-down svg{
+  width: 100%;
+  height: 100px;
+  text-align: center;
+}
+
 .icon {
   padding: 20px;
 }
@@ -120,9 +151,20 @@
 }
 
 .button-container {
+  display: grid;
   flex: 1;
   margin-left: 10px; /* Adjust the margin as needed */
+  align-items: center;
+  justify-content: center; 
 }
+
+.predict-button{
+  max-width: 30%;
+  padding: 10px;
+  align-self: center;
+  justify-self: center;
+}
+
 
 .button-group {
   display: flex;
@@ -142,11 +184,25 @@
   height: 100%;
 }
 
+
+
 .image {
   display: block;
   width: 100%;
   height: auto;
   object-fit: contain;
+}
+
+.prediction-container{
+  display: grid ;
+  align-items: center;
+}
+
+.score {
+  border: 1px solid rgb(5, 99, 5);
+  background-color: rgb(193, 231, 193);
+  padding: 5px;
+  width: 40%;
 }
 
 .bbox-container {
@@ -184,10 +240,15 @@
 .upload-instructions {
   padding: 20px;
   max-width:70%;
+  padding: 10px;
+}
 
+.amplify-flex.amplify-alert.amplify-alert--info {
+  margin-top: 20px;
 }
 
 .upload-instructions-text {
+  max-width: 70%;
   padding-top: 15%;
 }
 

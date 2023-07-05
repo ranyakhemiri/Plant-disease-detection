@@ -7,6 +7,7 @@ import { Button, Image, Card,Text,Heading,
 import "@aws-amplify/ui-react/styles.css";
 import Predict from "./Predict";
 import { Storage, API } from "aws-amplify";
+import { CgArrowDownO } from "react-icons/cg";
 
 function App() {
   const [showPrediction, setShowPrediction] = useState(false);
@@ -15,9 +16,11 @@ function App() {
   const [isLeaf, setIsLeaf] = useState(false);
   const [error, setError] = useState(false); // state for tracking error
   const [loading, setLoading] = useState(false); // state for tracking loading
+  const [predictionInProgress, setPredictionInProgress] = useState(false); //state for waiting for inference response
 
   const handlePredictClick = async () => {
     try {
+      setPredictionInProgress(true);
       console.log('starting api call');
       setLoading(true); // Start the loading state
       const apiResponse = await API.post("invokeSGMEndpoint", "/", {
@@ -38,10 +41,11 @@ function App() {
       const sagemakerPredictionString = JSON.stringify(apiResponse);
       const sagemakerPrediction = JSON.parse(sagemakerPredictionString);
       // updating the file contents with the prediction
+      const scores = sagemakerPrediction.scores;
       const predictedBbox = sagemakerPrediction.normalized_boxes[0];
       fileContents.bbox = predictedBbox;
       fileContents.category_id = sagemakerPrediction.class_names[0];
-      
+      fileContents.score = scores;
       console.log("New file updated with prediction : ",fileContents);
       await Storage.put(fileKey, fileContents);
       
@@ -50,6 +54,7 @@ function App() {
     // Wait for 10 seconds before showing the prediction
       await delay(500);  
       setLoading(false)
+      setPredictionInProgress(false); // Set prediction process complete
       setShowPrediction(true); // Set showPrediction state to true after successful API call
       setLoading(false); // Stop the loading state
     } catch (error) {
@@ -132,9 +137,23 @@ function App() {
         </div>
         <TabItem title="Image upload">
             <div className="container">
-
+            
             {!showPrediction ? (
             <div>
+                {!uploadSuccessful && !isLeaf && (
+                  <div className="container">
+                  <Heading level={3} color="green" fontWeight="bold">
+                    Welcome to the disease detection website
+                  </Heading>
+                  <Heading level={4}>
+                     Try it out ! Upload a picture of your crop below
+                  </Heading>
+                  <div className="icon-down">
+                  <CgArrowDownO></CgArrowDownO>
+                  </div>
+                  </div>
+                )}
+  
                 <FileUploader
                   maxFileCount={1}
                   accessLevel="public"
@@ -144,16 +163,39 @@ function App() {
                 />
 
                 {uploadSuccessful && !isLeaf && (
-                   <Loader variation="linear" />
+                   
+                   <div>
+                    <Loader variation="linear" />
+                   <Heading level={6} color="green">
+                   We are processing your image, please wait while we check if it's a leaf ...
+                  </Heading> 
+                  </div>
                 )}
                 {uploadSuccessful && loading && (
-                   <Loader variation="linear" />
+                  <Loader variation="linear" />
                 )}
-                {uploadSuccessful && isLeaf && (
+                {uploadSuccessful && isLeaf && !predictionInProgress && (
+                  
                   <div className="button-container">
+                    <Heading level={6} color="green">
+                      Congrats! The image you uploaded is a leaf.
+                    </Heading>
+                    <Heading level={5} >
+                      Click on the button below to start the prediction process.
+                    </Heading>
+                    <div className="predict-button">
                     <Button loadingText="" onClick={handlePredictClick} ariaLabel="">
                       Predict
                     </Button>
+                    </div>
+                  </div>
+                )}
+                {uploadSuccessful && isLeaf && predictionInProgress &&(
+                  
+                  <div className="button-container">
+                    <Heading level={6} color="green">
+                      We are processing your image, please wait while we generate predictions...
+                    </Heading>
                   </div>
                 )}
                 {error && <p className="error-message">Error: The uploaded file is not a leaf.</p>}
@@ -166,14 +208,15 @@ function App() {
         <TabItem title="Upload instructions">
           <div className="instructions">
           <div className="upload-instructions">
-                <Alert variation="warning">Make sure image is of type JPG/JPEG</Alert>
-                <Alert variation="warning">Make sure image is a leaf </Alert>
-                <Alert variation="warning">Make sure image is not blurry</Alert>
-                <Alert variation="warning">Make sure image size is less than 200 MB</Alert>
+                <Alert variation="info">Make sure image is of type JPG/JPEG</Alert>
+                <Alert variation="info">Make sure image is a leaf </Alert>
+                <Alert variation="info">Make sure image is not blurry</Alert>
+                <Alert variation="info">Make sure image size is less than 200 MB</Alert>
             </div>
             <div className="upload-instructions-text">
                 <SwitchField
-                label="I am aware of these instructions and aware that app malfunctions can be the result of the disregard of the instructions."
+                label="I am aware of these instructions and aware that app malfunctions 
+                can be the result of the disregard of the instructions."
                 trackCheckedColor={tokens.colors.green[60]}
                 defaultChecked={false}
                 /> 

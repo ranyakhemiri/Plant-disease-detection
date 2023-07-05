@@ -18,6 +18,7 @@ function Predict({ uploadedFileName }: PredictProps) {
   const [showDrawBounding, setShowDrawBounding] = useState(false);
   const [showRectifySuccessful, setShowRectifySuccessful] = useState(false);
   const [boundingBoxes, setBoundingBoxes] = useState<number[]>([]);
+  const [score, setScore] = useState("");
   const canvasRef: RefObject<HTMLCanvasElement> = useRef(null);
 
   useEffect(() => {
@@ -72,11 +73,11 @@ function Predict({ uploadedFileName }: PredictProps) {
 
       const fileResponse = await fetch(signedURL);
       const fileContents = await fileResponse.json();
-      const { category_id } = fileContents;
+      const { category_id , score} = fileContents;
       console.log(category_id);
-
+      console.log(score);
       setPrediction(category_id || "");
-
+      setScore(score || []);
       // // Fetch image URL from storage
       // const imageKey = uploadedFileName;
       // const imageResponse = await Storage.get(imageKey);
@@ -182,10 +183,11 @@ function Predict({ uploadedFileName }: PredictProps) {
 
   return (
     <div className="prediction-container">
-      <Heading level={4}>Prediction</Heading>
+      <Heading level={3} color="green">Prediction</Heading>
       {prediction !== "" && (
-      <h4>Disease category is: {prediction}</h4>)
+      <Heading level={4}>Disease category is: {prediction}</Heading>)
       }
+
       {imageURL && (
         <div className="image-container">
           <canvas ref={canvasRef} className="canvas" />
@@ -197,6 +199,10 @@ function Predict({ uploadedFileName }: PredictProps) {
           />
         </div>
       )}
+      {score.length > 0 && (
+       <p className="score">Score: {`${(parseFloat(score) * 100).toFixed(3)}%`}</p>
+      )}
+      <Heading level={4}>Are the predictions correct?</Heading>
       <div className="button-container">
         <Button
           style={{ backgroundColor: "green", color: "white", marginRight: "10px" }}
@@ -212,6 +218,8 @@ function Predict({ uploadedFileName }: PredictProps) {
         </Button>
       </div>
       {showDrawSkipButtons && (
+        <div>
+        <Heading level={4}> You can still choose to correct the bounding boxes : </Heading>
         <div className="button-group">
           <Button variation="primary" onClick={handleDrawBoundingBoxesClick} className="bounding-box-button">
             Draw Bounding Boxes
@@ -220,6 +228,8 @@ function Predict({ uploadedFileName }: PredictProps) {
             Skip
           </Button>
         </div>
+        </div>
+        
       )}
     </div>
   );
