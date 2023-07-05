@@ -35,13 +35,13 @@ exports.handler = async (event) => {
   } catch (error) {
     console.log('Error updating JSON file:', error);
 
-    return {
-      statusCode: 500,
-      headers: {
-        "Access-Control-Allow-Origin": "*",
-        "Access-Control-Allow-Headers": "*"
-      },
-      body: JSON.stringify({ error: 'Failed to update JSON file' }),
-    };
+    // return {
+    //   statusCode: 500,
+    //   headers: {
+    //     "Access-Control-Allow-Origin": "*",
+    //     "Access-Control-Allow-Headers": "*"
+    //   },
+    //   body: JSON.stringify({ error: 'Failed to update JSON file' }),
+    // };
   }
 };

@@ -44,6 +44,7 @@ const ChooseCorrectClass: React.FC<ChooseCorrectClassProps> = ({ uploadedFileNam
       const fileResponse = await fetch(response);
       const data = await fileResponse.json();
       setClasses(data.classes);
+      console.log('Classes:', data.classes);
     } catch (error) {
       console.log('Error fetching classes:', error);
     }

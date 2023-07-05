@@ -18,11 +18,11 @@
       "function": {
         "plantdiseasedetectio9be1cd61": {
           "deploymentBucketName": "amplify-plantdiseasedetectio-dev-122439-deployment",
-          "s3Key": "amplify-builds/plantdiseasedetectio9be1cd61-5a486e6950426258676c-build.zip"
+          "s3Key": "amplify-builds/plantdiseasedetectio9be1cd61-773346456a594d45734a-build.zip"
         },
         "invokeSGMEndpoint": {
           "deploymentBucketName": "amplify-plantdiseasedetectio-dev-122439-deployment",
-          "s3Key": "amplify-builds/invokeSGMEndpoint-493949734757345a6855-build.zip"
+          "s3Key": "amplify-builds/invokeSGMEndpoint-3354543942585a657632-build.zip"
         }
       },
       "api": {
