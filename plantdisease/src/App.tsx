@@ -141,7 +141,7 @@ function App() {
             {!showPrediction ? (
             <div>
                 {!uploadSuccessful && !isLeaf && (
-                  <div className="container">
+                  <div className="upload-container">
                   <Heading level={3} color="green" fontWeight="bold">
                     Welcome to the disease detection website
                   </Heading>
