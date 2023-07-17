@@ -1,22 +1,24 @@
-import React, { useEffect } from 'react';
-import { IoCheckmarkCircleOutline } from 'react-icons/io5';
-import './App.css';
-import { Heading } from '@aws-amplify/ui-react';
+import React, { useEffect } from 'react'
+import { IoCheckmarkCircleOutline } from 'react-icons/io5'
+import './App.css'
+import { Heading } from '@aws-amplify/ui-react'
 
 interface RectifySuccessfulProps {
-  uploadedFileName: string;
+  uploadedFileName: string
 }
 
-const RectifySuccessful: React.FC<RectifySuccessfulProps> = ({ uploadedFileName }) => {
+const RectifySuccessful: React.FC<RectifySuccessfulProps> = ({
+  uploadedFileName,
+}) => {
   useEffect(() => {
     const timeoutId = setTimeout(() => {
-      window.location.reload(); // Reload the page
-    }, 600);
+      window.location.reload()
+    }, 600)
 
     return () => {
-      clearTimeout(timeoutId); // Clear the timeout when the component unmounts
-    };
-  }, []);
+      clearTimeout(timeoutId) 
+    }
+  }, [])
 
   return (
     <div className="modifications-container">
@@ -27,7 +29,7 @@ const RectifySuccessful: React.FC<RectifySuccessfulProps> = ({ uploadedFileName 
         <IoCheckmarkCircleOutline className="checkmark-icon-green" />
       </div>
     </div>
-  );
-};
+  )
+}
 
-export default RectifySuccessful;
+export default RectifySuccessful

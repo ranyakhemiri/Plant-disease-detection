@@ -46,13 +46,8 @@
   padding: 20px;
 }
 
-.upload-container{
-  
-}
-
-
 .button-container {
-  padding : 20px;
+  padding: 20px;
   display: flex;
   flex-wrap: wrap;
   justify-content: center;
@@ -78,15 +73,14 @@
   background-color: lightblue;
 }
 
-
 .checkmark-icon-green {
   font-size: 64px;
-  color: green; 
+  color: green;
 }
 
 .checkmark-icon-red {
   font-size: 64px;
-  color: red; 
+  color: red;
 }
 
 .modifications-container {
@@ -104,25 +98,25 @@
 }
 
 .amplify-heading.amplify-heading--3 {
- text-align: center;
- padding: 20px;
+  text-align: center;
+  padding: 20px;
 }
 
 .amplify-heading.amplify-heading--5 {
   text-align: center;
   padding: 10px;
- }
+}
 
- .amplify-heading.amplify-heading--6 {
+.amplify-heading.amplify-heading--6 {
   text-align: center;
   padding: 10px;
- }
-.icon-down{
+}
+.icon-down {
   width: 100%;
   text-align: center;
 }
 
-.icon-down svg{
+.icon-down svg {
   width: 100%;
   height: 100px;
   text-align: center;
@@ -132,8 +126,8 @@
   padding: 20px;
 }
 
-.error-message{
-  color:red;
+.error-message {
+  color: red;
 }
 
 .link {
@@ -157,26 +151,25 @@
 .button-container {
   display: grid;
   flex: 1;
-  margin-left: 10px; /* Adjust the margin as needed */
+  margin-left: 10px; 
   align-items: center;
-  justify-content: center; 
+  justify-content: center;
 }
 
-.predict-button{
+.predict-button {
   max-width: 30%;
   padding: 10px;
   align-self: center;
   justify-self: center;
 }
 
-
 .button-group {
   display: flex;
   justify-content: center;
-  margin: 10px; 
+  margin: 10px;
 }
 
-.amplify-button.amplify-field-group__control{
+.amplify-button.amplify-field-group__control {
   margin: 10px;
 }
 
@@ -188,8 +181,6 @@
   height: 100%;
 }
 
-
-
 .image {
   display: block;
   width: 100%;
@@ -197,8 +188,8 @@
   object-fit: contain;
 }
 
-.prediction-container{
-  display: grid ;
+.prediction-container {
+  display: grid;
   align-items: center;
 }
 
@@ -243,7 +234,7 @@
 
 .upload-instructions {
   padding: 20px;
-  max-width:70%;
+  max-width: 70%;
   padding: 10px;
 }
 
@@ -262,7 +253,7 @@
   align-items: center;
 }
 
-.example-pictures{
+.example-pictures {
   display: block;
   padding: 20%;
   padding-top: 5%;
@@ -274,7 +265,7 @@
   align-items: center;
 }
 
-.logo{
+.logo {
   display: flex;
   padding-top: 14px;
   padding-right: 16px;
@@ -282,14 +273,14 @@
   overflow: inherit;
 }
 
-.amplify-flex.amplify-tabs{
+.amplify-flex.amplify-tabs {
   margin-bottom: 40px;
 }
 
-.amplify-heading.amplify-heading--4{
-  padding-bottom:  20px;
+.amplify-heading.amplify-heading--4 {
+  padding-bottom: 20px;
 }
 
-.logo:hover{
+.logo:hover {
   cursor: pointer;
 }
