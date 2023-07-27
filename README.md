@@ -3,7 +3,7 @@
 This project is a **serverless** application built entirely on **AWS**. It detects crop and disease type and allows the labeling correction of the disease and crop types by agriculture specialists. The goal of the labeling pipeline is to enhance the training dataset with quality images that are correctly annoted by field specialists.
 
 ### Architecture 
-![](./demo/architecture.png)
+![](./demo/archi.png)
 
 ### Walk-through demo
 
