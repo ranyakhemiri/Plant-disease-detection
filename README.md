@@ -5,7 +5,7 @@ This project is a **serverless** application built entirely on **AWS**. It detec
 ### Walk-through demo
 
 #### Sign-in / sign-up page
-![](./demo/sign-in.gif)
+![](./demo/sign_in.gif)
 
 Create an account by providing email and password. This step uses **Amazon Cognito** for authentication and authorization.
 #### Welcome page
