@@ -78,13 +78,8 @@ function App() {
         new Promise((resolve) => setTimeout(resolve, ms))
       await delay(4000)
     try {
-      // const fileKey = `${event.key}-prediction.json`
       const tempKey = `temp.json`
-      // const response = await Storage.get(fileKey)
       const temp = await Storage.get(tempKey)
-      //const signedURL = response
-
-      //const fileResponse = await fetch(signedURL)
       const tempResponse= await fetch(temp)
       const fileContents = await tempResponse.json()
       const { isLeaf } = fileContents
