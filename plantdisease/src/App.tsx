@@ -12,7 +12,6 @@ import {
   Flex,
   Tabs,
   TabItem,
-  ToggleButton,
   SwitchField,
   useTheme,
   Loader,
@@ -76,16 +75,18 @@ function App() {
     setUploadedFileName(event.key)
     setUploadSuccessful(true)
     const delay = (ms: number) =>
-      new Promise((resolve) => setTimeout(resolve, ms))
-    await delay(1000)
+        new Promise((resolve) => setTimeout(resolve, ms))
+      await delay(4000)
     try {
-      const fileKey = `${event.key}-prediction.json`
-      console.log('Storage file created with name : ', fileKey)
-      const response = await Storage.get(fileKey)
-      const signedURL = response
+      // const fileKey = `${event.key}-prediction.json`
+      const tempKey = `temp.json`
+      // const response = await Storage.get(fileKey)
+      const temp = await Storage.get(tempKey)
+      //const signedURL = response
 
-      const fileResponse = await fetch(signedURL)
-      const fileContents = await fileResponse.json()
+      //const fileResponse = await fetch(signedURL)
+      const tempResponse= await fetch(temp)
+      const fileContents = await tempResponse.json()
       const { isLeaf } = fileContents
       console.log('The uploaded image is a leaf? : ', isLeaf)
 
@@ -111,8 +112,9 @@ function App() {
         setUploadSuccessful(false)
         setUploadedFileName('')
         setTimeout(() => {
-          window.location.reload()
-        }, 3000)
+          window.location.reload();
+        }, 3000); 
+
       }
     } catch (error) {
       setError(true)
@@ -155,7 +157,7 @@ function App() {
                     </div>
                   </div>
                 )}
-
+                
                 <FileUploader
                   maxFileCount={1}
                   accessLevel="public"

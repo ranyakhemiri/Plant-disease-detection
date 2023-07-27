@@ -1,3 +1,14 @@
+@media (max-width: 768px) {
+  body {
+    font-size: 14px;
+    margin: 0.5rem;
+  }
+  #root {
+    font-size: 14px;
+    margin: 0.5rem;
+  }
+}
+
 .App {
   text-align: center;
 }
@@ -5,12 +16,6 @@
 .App-logo {
   height: 40vmin;
   pointer-events: none;
-}
-
-@media (prefers-reduced-motion: no-preference) {
-  .App-logo {
-    animation: App-logo-spin infinite 20s linear;
-  }
 }
 
 .App-header {
@@ -44,6 +49,8 @@
   height: 35vh;
   gap: 10px;
   padding: 20px;
+  width: fit-content;
+  block-size: fit-content;
 }
 
 .button-container {

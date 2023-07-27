@@ -31,7 +31,7 @@ def handler(event, context):
     
     #  Invoke the endpoint
     response = sagemaker_client.invoke_endpoint(
-        EndpointName='endpoint-with-no-hpo-apple',
+        EndpointName='endpoint-with-no-hpo-corn-apple',
         Body=image_data,
         ContentType='application/x-image', 
         Accept= 'application/json;verbose;n_predictions=1',

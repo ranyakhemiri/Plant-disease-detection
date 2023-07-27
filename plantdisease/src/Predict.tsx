@@ -5,6 +5,7 @@ import ChooseCorrectClass from './rectifyPrediction'
 import { Heading } from '@aws-amplify/ui-react'
 import RectifySuccessful from './rectifyPredictionSuccess'
 import DrawBoundingBoxes from './drawBoundingBoxes'
+import MapComponent from './MapComponent';
 
 interface PredictProps {
   uploadedFileName: string
@@ -192,6 +193,12 @@ function Predict({ uploadedFileName }: PredictProps) {
           Score: {`${(parseFloat(score) * 100).toFixed(3)}%`}
         </p>
       )}
+      
+      <Heading level={3} color="green">
+        Crop Location 
+      </Heading>
+      <MapComponent/>
+
       <Heading level={4}>Are the predictions correct?</Heading>
       <div className="button-container">
         <Button

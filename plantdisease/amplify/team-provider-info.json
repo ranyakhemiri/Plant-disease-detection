@@ -22,7 +22,11 @@
         },
         "invokeSGMEndpoint": {
           "deploymentBucketName": "amplify-plantdiseasedetectio-dev-122439-deployment",
-          "s3Key": "amplify-builds/invokeSGMEndpoint-3354543942585a657632-build.zip"
+          "s3Key": "amplify-builds/invokeSGMEndpoint-7a794b30696c6f4d3837-build.zip"
+        },
+        "getImageCoordinates": {
+          "deploymentBucketName": "amplify-plantdiseasedetectio-dev-122439-deployment",
+          "s3Key": "amplify-builds/getImageCoordinates-57647a2f6c4b6b447071-build.zip"
         }
       },
       "api": {

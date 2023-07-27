@@ -62,6 +62,12 @@
     }
   },
   "function": {
+    "getImageCoordinates": {
+      "build": true,
+      "dependsOn": [],
+      "providerPlugin": "awscloudformation",
+      "service": "Lambda"
+    },
     "invokeSGMEndpoint": {
       "build": true,
       "dependsOn": [],
@@ -81,6 +87,22 @@
     }
   },
   "parameters": {
+    "AMPLIFY_function_getImageCoordinates_deploymentBucketName": {
+      "usedBy": [
+        {
+          "category": "function",
+          "resourceName": "getImageCoordinates"
+        }
+      ]
+    },
+    "AMPLIFY_function_getImageCoordinates_s3Key": {
+      "usedBy": [
+        {
+          "category": "function",
+          "resourceName": "getImageCoordinates"
+        }
+      ]
+    },
     "AMPLIFY_function_invokeSGMEndpoint_deploymentBucketName": {
       "usedBy": [
         {
